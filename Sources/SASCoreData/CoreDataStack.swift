@@ -10,18 +10,19 @@ import Foundation
 import CoreData
 import SASLogger
 
+@available(OSX 10.12, *)
 public class CoreDataStack {
     
     // MARK: - Core Data stack
     
     private init() {}
     
-    @available(iOS 10.0, *)
+    
     public static var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
-    @available(iOS 10.0, *)
+   
     public static var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -40,7 +41,7 @@ public class CoreDataStack {
     
     // MARK: - Core Data Saving support
     
-    @available(iOS 10.0, *)
+    
     public static  func saveContext (comp: (() -> ())? = nil) {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -56,7 +57,7 @@ public class CoreDataStack {
         }
     }
     
-    @available(iOS 10.0, *)
+    
     public static func fetchData(entityName: String) -> [NSManagedObject]? {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         var data: [NSManagedObject]?
@@ -70,7 +71,7 @@ public class CoreDataStack {
     }
     
     
-    @available(iOS 10.0, *)
+   
     public static func save<T>(name: T,entityName: String,keyPath: String, comp: @escaping (_ data: NSManagedObject) -> ()) {
 
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: CoreDataStack.context)!
