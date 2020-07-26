@@ -43,15 +43,6 @@ public class DataController {
         }
     }
     
-//    public func fetch<T:NSFetchRequestResult>(sortOrderKey: String, ascending: Bool,forType:T, comp: (T) -> ()) {
-//         let fetchRequest: NSFetchRequest<T> = T.fetchRequest()
-//        let sortDescriptor = NSSortDescriptor(key: sortOrderKey, ascending: ascending)
-//        fetchRequest.sortDescriptors = [sortDescriptor]
-//        if let value = try? viewContext.fetch(fetchRequest) {
-//            comp(value as! T)
-//        }
-//    }
-    
     public func fetchDataWith(sortOrderKey: String, ascending: Bool, entityName: String) -> [NSManagedObject]? {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: sortOrderKey, ascending: ascending)
@@ -94,8 +85,9 @@ public class DataController {
         
     }
     
-    public func deleted(_ data: NSManagedObject) {
+    public func deletedAndSave(_ data: NSManagedObject) {
         viewContext.delete(data)
+        saved()
     }
     
 }

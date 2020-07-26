@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import SASLogger
 
+@available(iOS 10.0, *)
 @available(OSX 10.12, *)
 public class CoreDataStack {
     
