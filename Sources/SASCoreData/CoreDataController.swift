@@ -19,7 +19,7 @@ public class DataController {
         return persistentContainer.viewContext
         
     }
-    
+    var loaded: Bool = false
     public var backgroundContext: NSManagedObjectContext!
     
     public init(modelName: String) {
@@ -35,6 +35,8 @@ public class DataController {
     }
     
     public func load(completion:(() -> ())? = nil) {
+        guard !loaded else {return}
+        loaded = true
         persistentContainer.loadPersistentStores { (storeDescription, error) in
             guard error == nil else { fatalError("CoreDataError😳\(error!.localizedDescription)")}
             
